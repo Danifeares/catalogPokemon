@@ -16,7 +16,7 @@ const registerUser = async (req, res) => {
     }
 
     const encryptedPassword = await bcrypt.hash(senha, 8)
-    
+
     const query = 'insert into usuarios (nome, email, senha) values ($1, $2, $3) returning *'
     const params = [nome, email, encryptedPassword]
     const { rows } = await pool.query(query, params)
@@ -27,6 +27,34 @@ const registerUser = async (req, res) => {
   }
 }
 
+const login = async (req, res) => {
+  const { email, senha } = req.body
+  try {
+    const queryUser = 'select * from usuarios where email = $1'
+    const { rows, rowCount } = await pool.query(queryUser, [email])
+    if (rowCount < 1) {
+      return res.status(404).json({ mensagem: 'Email ou senha inválidos' })
+    }
+
+    const validPassword = await bcrypt.compare(senha, rows[0].senha)
+
+    if (!validPassword) {
+      return res.status(404).json({ mensagem: 'Email ou senha inválidos' })
+    }
+
+    const token = jwt.sign({ id: rows[0].id }, passwordJWT, { expiresIn: '8h' })
+
+    const { senha: _, ...loggedUser } = rows[0]
+
+    return res.json({ usuario: loggedUser, token })
+
+  } catch (error) {
+    console.log(error.message)
+    return res.status(500).json({ mensagem: 'Internal server error' })
+  }
+}
+
 module.exports = {
-  registerUser
+  registerUser,
+  login
 }
