@@ -47,9 +47,12 @@ const pokemonsListing = async (req, res) => {
     p.habilidades,
     p.imagem
     from usuarios u join pokemons p
-    on u.id = p.usuario_id;
+    on u.id = p.usuario_id
+    where p.usuario_id = $1;
     `
-    const { rows } = await pool.query(queryList)
+    const userID = req.user.id
+
+    const { rows } = await pool.query(queryList, [userID])
 
     const list = rows.map((pokemon) => ({
       id: pokemon.id,
@@ -70,7 +73,13 @@ const pokemonsListing = async (req, res) => {
 
 const findPokemon = async (req, res) => {
   const { id } = req.params
+  const userID = req.user.id
   try {
+    const { rowCount } = await pool.query('select * from pokemons where id = $1 and usuario_id = $2', [id, userID])
+    if (rowCount < 1) {
+      return res.status(404).json({ mensagem: 'id não localizado ou o pokemon não pertence ao usuário logado.' })
+    }
+
     const queryList = `
     select
     p.id,
@@ -83,6 +92,8 @@ const findPokemon = async (req, res) => {
     on u.id = p.usuario_id
     where p.id = $1;
     `
+
+
     const { rows } = await pool.query(queryList, [id])
 
     const list = {
@@ -103,10 +114,11 @@ const findPokemon = async (req, res) => {
 
 const pokemonDelete = async (req, res) => {
   const { id } = req.params
+  const userID = req.user.id
   try {
-    const { rowCount } = await pool.query('select * from pokemons where id = $1', [id])
+    const { rowCount } = await pool.query('select * from pokemons where id = $1 and usuario_id = $2', [id, userID])
     if (rowCount < 1) {
-      return res.status(404).json({ mensagem: 'id não localizado' })
+      return res.status(404).json({ mensagem: 'id não localizado ou o pokemon não pertence ao usuário logado.' })
     }
     const queryDelete = 'delete from pokemons where id = $1'
     await pool.query(queryDelete, [id])
