@@ -11,12 +11,12 @@ Cada usuário logado por meio do token de autenticação pode cadastrar seus pok
 
 ## Funcionalidades:
 - [Cadastro de usuário - com senha criptografada](#cadastrarUsuário)
-- Login de usuário - é gerado token de autenticação, que será utilizado para acessar as demais funcionalidades.
-- Cadastro de pokémons.
-- Atualização de apelido de pokémon.
-- Listagem completa dos pokémons.
-- Listagem apenas de um pokémon pelo seu id.
-- Exclusão de pokémon.
+- [Login de usuário - é gerado token de autenticação, que será utilizado para acessar as demais funcionalidades](#loginUsuário)
+- [Cadastro de pokémons](#cadastroPokemon)
+- [Atualização de apelido de pokémon](#atualizaçãoPoke)
+- [Listagem completa dos pokémons](#listarTodosPoke)
+- [Listagem apenas de um pokémon pelo seu id](#listarUMPoke)
+- [Exclusão de pokémon](#deletarPoke)
   
 ---
 
@@ -69,7 +69,7 @@ Cada usuário logado por meio do token de autenticação pode cadastrar seus pok
 
 ---
 
-### Login de usuário:
+### Login de usuário: <a name="loginUsuário"></a>
 
 ✔️ Por meio da rota **post**: http://localhost:3000/login
     
@@ -89,7 +89,7 @@ Cada usuário logado por meio do token de autenticação pode cadastrar seus pok
 
 ---
 
-### Cadastro de pokémon:
+### Cadastro de pokémon: <a name="cadastroPokemon"></a>
 
 ✔️ Por meio da rota **post**: http://localhost:3000/pokemon
     
@@ -114,7 +114,7 @@ Cada usuário logado por meio do token de autenticação pode cadastrar seus pok
 
 ---
 
-### Atualização apenas do apelido do pokémon:
+### Atualização apenas do apelido do pokémon: <a name="atualizaçãoPoke"></a>
 
 ✔️ Por meio da rota **patch**: http://localhost:3000/nickname/:id
     
@@ -134,7 +134,7 @@ Cada usuário logado por meio do token de autenticação pode cadastrar seus pok
 
 ---
 
-### Listagem completa dos pokemons:
+### Listagem completa dos pokemons: <a name="listarTodosPoke"></a>
 
 ✔️ Por meio da rota **get**: http://localhost:3000/listingAll
     
@@ -145,7 +145,7 @@ Cada usuário logado por meio do token de autenticação pode cadastrar seus pok
 
 ---
 
-### Listar apenas um pokémon pelo seu id: 
+### Listar apenas um pokémon pelo seu id:  <a name="listarUMPoke"></a>
 
 ✔️ Por meio da rota **get**: http://localhost:3000/pokemon/:id
     
@@ -156,7 +156,7 @@ Cada usuário logado por meio do token de autenticação pode cadastrar seus pok
 
 ---
 
-### Deletar um pokémon:
+### Deletar um pokémon: <a name="deletarPoke"></a>
 
 ✔️ Por meio da rota **delete**: http://localhost:3000/pokemon/:id
     
