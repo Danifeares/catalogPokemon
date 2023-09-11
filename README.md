@@ -3,8 +3,8 @@
 # API para catálogo de Pokémons
 
 ## Objetivo:
-O projeto consiste em uma **API REST** que tem por objetivo ser um catálogo de pokémons. </br>
-A aplicação realiza o cadastro dos usuários e salva as senhas com uso de criptografia. </br>
+O projeto consiste em uma **API REST** que tem por objetivo ser um catálogo de pokémons. 📑 </br>
+A aplicação realiza o cadastro dos usuários e salva as senhas com uso de criptografia. 🔐 </br>
 Cada usuário logado por meio do token de autenticação pode cadastrar seus pokémons no banco de dados, listar todos (ou apenas um) ou deletar algum pokémon, quando bem entender.
 
 ---
@@ -44,11 +44,127 @@ Cada usuário logado por meio do token de autenticação pode cadastrar seus pok
 
 ---
 
-## Exemplo de utilização:
+## Exemplos de utilização:
 
 
+### Cadastrar usuário:
 
+✔️ Por meio da rota **post**: http://localhost:3000/user
+    
+- E-mail deve ser um campo único. 
+- Verificar se todos os campos obrigatórios foram informados - nome, email e senha.
+- Gerar id para o usuário cadastrado como chave primária e auto-incremento.
 
+###### Exemplo de body da requisição:
 
+```
+{
+"nome": "Francisca",
+"email": "francisca1@gmail.com",
+"senha": "umaSenhaSegura"
+}
+```
+
+![CADASTRAR-USUÁRIO](https://github.com/Danifeares/catalogPokemon/assets/117787402/6c62dcad-3c47-4f80-bbd8-946400ff1fcf)
+
+---
+
+### Login de usuário:
+
+✔️ Por meio da rota **post**: http://localhost:3000/login
+    
+- Verificar se todos os campos obrigatórios foram informados e estão corretos - email e senha.
+- É gerado token de autenticação a cada novo login. O token tem validade de 08 horas.
+
+###### Exemplo de body da requisição:
+
+```
+{
+"email": "francisca1@gmail.com",
+"senha": "umaSenhaSegura"
+}
+```
+
+![LOGIN-USUÁRIO](https://github.com/Danifeares/catalogPokemon/assets/117787402/6e619abb-3e22-490c-864a-e6be4c35c049)
+
+---
+
+### Cadastro de pokémon:
+
+✔️ Por meio da rota **post**: http://localhost:3000/pokemon
+    
+- Receber o _token_ do header da requisição (authorization) no formato _Bearer Token_ e validar o usuário logado.
+- O campo _usuario_id_ não deve ser capturado do body da requisição. Deve ser obtido do token recebido no header.
+- No cadastro de pokemon, o campo habilidades deverá receber apenas uma string de habilidades separadas por vírgulas.
+- Gerar id para o pokemon cadastrado como chave primária e auto-incremento.
+- Verificar se todos os campos obrigatórios foram passados - nome e habilidades.
+
+###### Exemplo de body da requisição:
+
+```
+{
+"nome": "Pikachu",
+"apelido": "pikachu",
+"habilidades": "static, lightning-rod",
+"imagem": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/25.svg"
+}
+```
+
+![cadastrar-pokemon](https://github.com/Danifeares/catalogPokemon/assets/117787402/2851a192-607f-463f-82f7-a62e6405693d)
+
+---
+
+### Atualização apenas do apelido do pokémon:
+
+✔️ Por meio da rota **patch**: http://localhost:3000/nickname/:id
+    
+- Receber o _token_ do header da requisição (authorization) no formato _Bearer Token_ e validar o usuário logado.
+- Verificar se todos os campos obrigatórios foram passados - apelido.
+- Verificar se o pokémon que será acessado pertence ao usuário logado.
+
+###### Exemplo de body da requisição:
+
+```
+{
+"apelido": "squirtle"
+}
+```
+
+![atualizar-apelido](https://github.com/Danifeares/catalogPokemon/assets/117787402/3b9ef29e-123a-47f8-aadc-b8b7bc487eba)
+
+---
+
+### Listagem completa dos pokemons:
+
+✔️ Por meio da rota **get**: http://localhost:3000/listingAll
+    
+- Receber o _token_ do header da requisição (authorization) no formato _Bearer Token_ e validar o usuário logado.
+- Verificar se os pokémons que serão acessados pertencem ao usuário logado.
+
+![listar-pokemons](https://github.com/Danifeares/catalogPokemon/assets/117787402/f0cdc8b0-13f0-45be-80a8-bc41d79499f0)
+
+---
+
+### Listar apenas um pokémon pelo seu id: 
+
+✔️ Por meio da rota **get**: http://localhost:3000/pokemon/:id
+    
+- Receber o _token_ do header da requisição (authorization) no formato _Bearer Token_ e validar o usuário logado.
+- Verificar se o pokémon que será acessado pertence ao usuário logado.
+
+![listar-um-pokemon-só](https://github.com/Danifeares/catalogPokemon/assets/117787402/f0e87816-bbfe-4f93-8788-ab5664c31967)
+
+---
+
+### Deletar um pokémon:
+
+✔️ Por meio da rota **delete**: http://localhost:3000/pokemon/:id
+    
+- Receber o _token_ do header da requisição (authorization) no formato _Bearer Token_ e validar o usuário logado.
+- Verificar se o pokémon que será acessado pertence ao usuário logado.
+
+![deletar-pokemon](https://github.com/Danifeares/catalogPokemon/assets/117787402/a4ece935-feca-46a8-be1b-1e032ab0c5ab)
+
+---
 
 ###### tags: `criptografia` `lógica` `banco de dados` `sql` `postgres` `javascript` `REST` `CRUD`
