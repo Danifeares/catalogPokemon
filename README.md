@@ -9,7 +9,7 @@ Cada usuário logado por meio do token de autenticação pode cadastrar seus pok
 
 ---
 
-## Funcionalidades:
+## Funcionalidades: <a name="Índice"></a>
 - [Cadastro de usuário - com senha criptografada](#cadastrarUsuário)
 - [Login de usuário - é gerado token de autenticação, que será utilizado para acessar as demais funcionalidades](#loginUsuário)
 - [Cadastro de pokémons](#cadastroPokemon)
@@ -67,6 +67,7 @@ Cada usuário logado por meio do token de autenticação pode cadastrar seus pok
 
 ![CADASTRAR-USUÁRIO](https://github.com/Danifeares/catalogPokemon/assets/117787402/6c62dcad-3c47-4f80-bbd8-946400ff1fcf)
 
+### [Voltar ao índice](#Índice)
 ---
 
 ### Login de usuário: <a name="loginUsuário"></a>
@@ -87,6 +88,7 @@ Cada usuário logado por meio do token de autenticação pode cadastrar seus pok
 
 ![LOGIN-USUÁRIO](https://github.com/Danifeares/catalogPokemon/assets/117787402/6e619abb-3e22-490c-864a-e6be4c35c049)
 
+### [Voltar ao índice](#Índice)
 ---
 
 ### Cadastro de pokémon: <a name="cadastroPokemon"></a>
@@ -112,6 +114,7 @@ Cada usuário logado por meio do token de autenticação pode cadastrar seus pok
 
 ![cadastrar-pokemon](https://github.com/Danifeares/catalogPokemon/assets/117787402/2851a192-607f-463f-82f7-a62e6405693d)
 
+### [Voltar ao índice](#Índice)
 ---
 
 ### Atualização apenas do apelido do pokémon: <a name="atualizaçãoPoke"></a>
@@ -132,6 +135,7 @@ Cada usuário logado por meio do token de autenticação pode cadastrar seus pok
 
 ![atualizar-apelido](https://github.com/Danifeares/catalogPokemon/assets/117787402/3b9ef29e-123a-47f8-aadc-b8b7bc487eba)
 
+### [Voltar ao índice](#Índice)
 ---
 
 ### Listagem completa dos pokemons: <a name="listarTodosPoke"></a>
@@ -143,6 +147,7 @@ Cada usuário logado por meio do token de autenticação pode cadastrar seus pok
 
 ![listar-pokemons](https://github.com/Danifeares/catalogPokemon/assets/117787402/f0cdc8b0-13f0-45be-80a8-bc41d79499f0)
 
+### [Voltar ao índice](#Índice)
 ---
 
 ### Listar apenas um pokémon pelo seu id:  <a name="listarUMPoke"></a>
@@ -154,6 +159,7 @@ Cada usuário logado por meio do token de autenticação pode cadastrar seus pok
 
 ![listar-um-pokemon-só](https://github.com/Danifeares/catalogPokemon/assets/117787402/f0e87816-bbfe-4f93-8788-ab5664c31967)
 
+### [Voltar ao índice](#Índice)
 ---
 
 ### Deletar um pokémon: <a name="deletarPoke"></a>
@@ -165,6 +171,7 @@ Cada usuário logado por meio do token de autenticação pode cadastrar seus pok
 
 ![deletar-pokemon](https://github.com/Danifeares/catalogPokemon/assets/117787402/a4ece935-feca-46a8-be1b-1e032ab0c5ab)
 
+### [Voltar ao índice](#Índice)
 ---
 
 ###### tags: `criptografia` `lógica` `banco de dados` `sql` `postgres` `javascript` `REST` `CRUD`
