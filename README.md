@@ -10,7 +10,7 @@ Cada usuário logado por meio do token de autenticação pode cadastrar seus pok
 ---
 
 ## Funcionalidades:
-- Cadastro de usuário - com senha criptografada.
+- [Cadastro de usuário - com senha criptografada](#cadastrarUsuário)
 - Login de usuário - é gerado token de autenticação, que será utilizado para acessar as demais funcionalidades.
 - Cadastro de pokémons.
 - Atualização de apelido de pokémon.
@@ -47,7 +47,7 @@ Cada usuário logado por meio do token de autenticação pode cadastrar seus pok
 ## Exemplos de utilização:
 
 
-### Cadastrar usuário:
+### Cadastrar usuário: <a name="cadastrarUsuário"></a>
 
 ✔️ Por meio da rota **post**: http://localhost:3000/user
     
