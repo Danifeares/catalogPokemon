@@ -7,12 +7,12 @@ const registerUser = async (req, res) => {
   const { nome, email, senha } = req.body
   try {
     if (!nome || !email || !senha) {
-      return res.status(403).json({ mensagem: "nome, email e senha são obrigatórios!" })
+      return res.status(403).json({ message: "nome, email e senha são obrigatórios!" })
     }
     const emailVerification = 'select email from usuarios where email = $1'
     const { rowCount } = await pool.query(emailVerification, [email])
     if (rowCount >= 1) {
-      return res.status(409).json({ mensagem: "Email já existe" })
+      return res.status(409).json({ message: "Email já existe" })
     }
 
     const encryptedPassword = await bcrypt.hash(senha, 8)
@@ -23,7 +23,7 @@ const registerUser = async (req, res) => {
     return res.status(201).json(rows[0])
   } catch (error) {
     console.log(error.message)
-    return res.status(500).json({ mensagem: 'Internal server error' })
+    return res.status(500).json({ message: 'Internal server error' })
   }
 }
 
@@ -33,13 +33,13 @@ const login = async (req, res) => {
     const queryUser = 'select * from usuarios where email = $1'
     const { rows, rowCount } = await pool.query(queryUser, [email])
     if (rowCount < 1) {
-      return res.status(404).json({ mensagem: 'Email ou senha inválidos' })
+      return res.status(404).json({ message: 'Email ou senha inválidos' })
     }
 
     const validPassword = await bcrypt.compare(senha, rows[0].senha)
 
     if (!validPassword) {
-      return res.status(400).json({ mensagem: 'Email ou senha inválidos' })
+      return res.status(400).json({ message: 'Email ou senha inválidos' })
     }
 
     const token = jwt.sign({ id: rows[0].id }, passwordJWT, { expiresIn: '8h' })
@@ -50,7 +50,7 @@ const login = async (req, res) => {
 
   } catch (error) {
     console.log(error.message)
-    return res.status(500).json({ mensagem: 'Internal server error' })
+    return res.status(500).json({ message: 'Internal server error' })
   }
 }
 

@@ -1,8 +1,14 @@
 const express = require('express')
 const { registerUser, login } = require('./controllers/users')
-const { } = require('./controllers/pokemons')
+const { 
+  registerPokemon, 
+  nicknameUpdate, 
+  pokemonsListing, 
+  findPokemon,
+  pokemonDelete
+} = require('./controllers/pokemons')
 const userAuthentication = require('./middlers/authentication')
-const test = require('./controllers/pokemons')
+
 
 const routers = express()
 
@@ -11,6 +17,10 @@ routers.post('/login', login)
 
 routers.use(userAuthentication)
 
-routers.get('/teste', test)
+routers.post('/pokemon', registerPokemon)
+routers.patch('/nickname/:id', nicknameUpdate)
+routers.get('/listingAll', pokemonsListing)
+routers.get('/pokemon/:id', findPokemon)
+routers.delete('/pokemon/:id', pokemonDelete)
 
 module.exports = routers
